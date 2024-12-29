@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>My Enrolled Courses</h2>
+{% if enrollments %}
+  <ul class="list-group">
+    {% for enrollment in enrollments %}
+      <li class="list-group-item">
+        <strong>{{ enrollment.course.title }}</strong>
+        <p>{{ enrollment.course.description }}</p>
+        <p>Enrolled on: {{ enrollment.enrolled_at|date:"F j, Y, g:i a" }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>You haven't enrolled in any courses yet.</p>
+{% endif %}
+{% endblock %}

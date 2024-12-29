@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ course.title }}</h1>
+    <p><strong>Price:</strong> ${{ course.price }}</p>
+    <p><strong>Description:</strong> {{ course.description }}</p>
+    <p><strong>Created At:</strong> {{ course.created_at }}</p>
+
+    {% if course.image %}
+        <img src="{{ course.image.url }}" class="img-fluid" alt="{{ course.title }}">
+    {% endif %}
+
+Enrollment button
+{% if user.is_authenticated %}
+    <a href="{% url 'enroll' course.pk %}" class="btn btn-primary mt - 3">Enroll in this course</a>
+{% else %}
+    <p>You need to log in to enroll in this course</p>
+{% endif %}
+</div>
+
+<a href="{% url 'course_list' %}" class="btn btn-primary mt-3">Back to Courses</a>
+{% endblock %}
